@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css">
+    <title>Menu</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="logo.png" alt="Logo" style="height: 40px;">
+            <a href="/home">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/cart">Cart</a>
+            <a href="/reviews">Reviews</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="main-course">
+            <% for(let i=0; i<post.length; i++) { %>
+                <div class="menu-item">
+                    <img src="data:<%= post[i].mimetype %>;base64,<%= post[i].dishimage %>" alt="<%= post[i].dishname %>">
+                    <h3><%= post[i].dishname %></h3>
+                    <p><%= post[i].dishdescription %></p>
+                    <span>
+                        <h4>&#8377; <%= post[i].dishamount %></h4>
+                        <form action="/add-to-cart" method="POST">
+                            <input type="hidden" name="dishId" value="<%= post[i].id %>">
+                            <button type="submit">ADD</button>
+                        </form>
+                    </span>
+                </div>
+            <% } %>
+        </section>
+    </main>
+
+    <footer>
+        <div>&copy; 2025 DineFlow | All Rights Reserved</div>
+    </footer>
+</body>
+</html>
